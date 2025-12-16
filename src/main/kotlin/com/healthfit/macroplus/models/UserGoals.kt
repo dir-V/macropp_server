@@ -4,6 +4,7 @@ import com.healthfit.macroplus.enums.GoalType
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UuidGenerator
+import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
@@ -12,10 +13,10 @@ import java.util.*
 @Table(name = "user_goals")
 class UserGoals(
 	@ManyToOne
-	@JoinColumn("user_id", nullable = false)
+	@JoinColumn(name = "user_id", nullable = false)
 	var user: User,
 
-	@Enumerated(EnumType.STRING)
+	@Enumerated(value = EnumType.STRING)
 	@Column(name = "goal_type", nullable = false)
 	var goalType: GoalType,
 
@@ -23,19 +24,19 @@ class UserGoals(
 	var targetCalories: Int,
 
 	@Column(name = "target_protein_g", nullable = false)
-	var targetProteinGrams: Int,
+	var targetProteinGrams: BigDecimal,
 
-	@Column(name = "target_carb_g", nullable = false)
-	var targetCarbGrams: Int,
+	@Column(name = "target_carbs_g", nullable = false)
+	var targetCarbsGrams: BigDecimal,
 
-	@Column(name = "target_fat_g", nullable = false)
-	var targetFatGrams: Int
+	@Column(name = "target_fats_g", nullable = false)
+	var targetFatsGrams: BigDecimal
 ) {
 
 	constructor() : this(
 		User(),
 		GoalType.MAINTENANCE,
-		0, 0, 0, 0
+		0, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO
 	)
 
 	@Id
@@ -71,7 +72,7 @@ class UserGoals(
 
 	override fun toString(): String {
 		return "UserGoals(id=$id, userId=${user.id}, goalType=$goalType, targetCalories=$targetCalories, " +
-				"targetProteinGrams=$targetProteinGrams, targetCarbGrams=$targetCarbGrams), targetFatGrams=$targetFatGrams, " +
+				"targetProteinGrams=$targetProteinGrams, targetCarbGrams=$targetCarbsGrams), targetFatGrams=$targetFatsGrams, " +
 				"startDate=$startDate, endDate=$endDate, isActive=$isActive)"
 	}
 
