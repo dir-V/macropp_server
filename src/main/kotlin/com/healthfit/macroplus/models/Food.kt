@@ -43,7 +43,7 @@ open class Food(
 	var barcode: Long? = null
 ) {
 
-	protected constructor() : this(User(), "", 0, null, null, null, null, null)
+	constructor() : this(User(), "", 0, null, null, null, null, null)
 
 	@Id
 	@GeneratedValue
