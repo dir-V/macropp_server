@@ -27,16 +27,16 @@ open class Food(
 	@Column(name = "calories_per_100g", nullable = false)
 	var caloriesPer100Grams: Int,
 
-	@Column(name = "protein_per_100g", nullable = true)
+	@Column(name = "protein_per_100g", nullable = true, precision = 8, scale = 2)
 	var proteinPer100Grams: BigDecimal?,
 
-	@Column(name = "carbs_per_100g", nullable = true)
+	@Column(name = "carbs_per_100g", nullable = true, precision = 8, scale = 2)
 	var carbsPer100Grams: BigDecimal?,
 
-	@Column(name = "fats_per_100g", nullable = true)
+	@Column(name = "fats_per_100g", nullable = true, precision = 8, scale = 2)
 	var fatsPer100Grams: BigDecimal?,
 
-	@Column(name = "serving_size_g", nullable = true)
+	@Column(name = "serving_size_g", nullable = true, precision = 8, scale = 2)
 	var servingSizeGrams: BigDecimal?,
 
 	@Column(name = "barcode", nullable = false)

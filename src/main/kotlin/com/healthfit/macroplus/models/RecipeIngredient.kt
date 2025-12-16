@@ -23,7 +23,7 @@ open class RecipeIngredient (
 	@JoinColumn(name = "food_id", nullable = false)
 	var food: Food,
 
-	@Column(name = "quantity_g")
+	@Column(name = "quantity_g", precision = 8, scale = 2)
 	var quantity: BigDecimal
 ) {
 

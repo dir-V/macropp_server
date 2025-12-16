@@ -23,7 +23,7 @@ open class WeighIn(
 	@JoinColumn(name = "user_id", nullable = false)
 	var user: User,
 
-	@Column(name = "weight_kg", nullable = false)
+	@Column(name = "weight_kg", nullable = false, precision = 8, scale = 2)
 	var weightKg: BigDecimal,
 
 	@Column(name = "weight_date", nullable = false)

@@ -31,7 +31,7 @@ open class FoodLog(
 	@Column(name = "name" , nullable = false)
 	var name: String,
 
-	@Column(name = "quantity_g", nullable = true)
+	@Column(name = "quantity_g", nullable = true, precision = 8, scale = 2)
 	var quantityGrams: BigDecimal?,
 
 	@Column(name = "logged_at", nullable = true)
@@ -40,13 +40,13 @@ open class FoodLog(
 	@Column(name = "calories" , nullable = false)
 	var calories: Int,
 
-	@Column(name = "protein_g" , nullable = true)
+	@Column(name = "protein_g" , nullable = true, precision = 8, scale = 2)
 	var proteinGrams: BigDecimal? = null,
 
-	@Column(name = "carbs_g" , nullable = true)
+	@Column(name = "carbs_g" , nullable = true, precision = 8, scale = 2)
 	var carbsGrams: BigDecimal? = null,
 
-	@Column(name = "fats_g" , nullable = true)
+	@Column(name = "fats_g" , nullable = true, precision = 8, scale = 2)
 	var fatsGrams: BigDecimal? = null,
 
 ) {

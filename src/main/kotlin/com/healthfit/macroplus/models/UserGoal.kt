@@ -23,13 +23,13 @@ class UserGoal(
 	@Column(name = "target_calories", nullable = false)
 	var targetCalories: Int,
 
-	@Column(name = "target_protein_g", nullable = false)
+	@Column(name = "target_protein_g", nullable = false, precision = 8, scale = 2)
 	var targetProteinGrams: BigDecimal,
 
-	@Column(name = "target_carbs_g", nullable = false)
+	@Column(name = "target_carbs_g", nullable = false, precision = 8, scale = 2)
 	var targetCarbsGrams: BigDecimal,
 
-	@Column(name = "target_fats_g", nullable = false)
+	@Column(name = "target_fats_g", nullable = false, precision = 8, scale = 2)
 	var targetFatsGrams: BigDecimal
 ) {
 
