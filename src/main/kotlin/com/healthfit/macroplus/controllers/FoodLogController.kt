@@ -29,7 +29,6 @@ class FoodLogController(
 		val createdLog = foodLogService.addFoodLogWithFoodId(
 			userId = request.userId,
 			foodId = request.foodId,
-			name = request.name,
 			quantityGrams = request.quantityGrams,
 			loggedAt = request.loggedAt
 		)
@@ -43,6 +42,7 @@ class FoodLogController(
 		val createdLog = foodLogService.addFoodLogQuickAdd(
 			userId = request.userId,
 			calories = request.calories,
+			quickName = request.quickName,
 			loggedAt = request.loggedAt
 		)
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdLog.toResponse())

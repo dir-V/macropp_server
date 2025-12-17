@@ -8,7 +8,6 @@ import java.util.UUID
 data class CreateFoodLogRequest(
 	val userId: UUID,
 	val foodId: UUID,
-	val name: String,
 	val quantityGrams: BigDecimal,
 	val loggedAt: LocalDateTime?
 )
@@ -17,6 +16,7 @@ data class CreateFoodLogRequest(
 data class QuickAddLogRequest(
 	val userId: UUID,
 	val calories: Int,
+	val quickName: String,
 	val loggedAt: LocalDateTime?
 )
 

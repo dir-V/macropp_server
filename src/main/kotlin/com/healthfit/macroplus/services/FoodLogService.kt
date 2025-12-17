@@ -24,7 +24,6 @@ open class FoodLogService(
 	 open fun addFoodLogWithFoodId(
 		userId: UUID,
 		foodId: UUID,
-		name: String,
 		quantityGrams: BigDecimal,
 		loggedAt: LocalDateTime? = LocalDateTime.now(),
 		): FoodLog {
@@ -45,7 +44,7 @@ open class FoodLogService(
 		val newFoodLog = FoodLog(
 			user = foundUser,
 			food = foundFood,
-			name = name,
+			name = foundFood.name,
 			quantityGrams = quantityGrams,
 			loggedAt = loggedAt,
 			calories = calories,
@@ -62,6 +61,7 @@ open class FoodLogService(
 	 open fun addFoodLogQuickAdd(
 		userId: UUID,
 		calories: Int,
+		quickName: String,
 		loggedAt: LocalDateTime? = LocalDateTime.now(),
 		): FoodLog {
 
@@ -71,7 +71,7 @@ open class FoodLogService(
 		val newFoodLog = FoodLog(
 			user = foundUser,
 			food = null,
-			name = "Quick Add",
+			name = "Quick Add: $quickName",
 			quantityGrams = null,
 			loggedAt = loggedAt,
 			calories = calories,
