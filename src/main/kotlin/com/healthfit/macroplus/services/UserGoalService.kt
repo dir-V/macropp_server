@@ -39,14 +39,15 @@ class UserGoalService(
 
 //		isActive true by default
 		val newUserGoal = UserGoal(
-			foundUser,
-			goalType,
-			targetCalories,
-			targetProteinGrams,
-			targetCarbsGrams,
-			targetFatsGrams
+			user = foundUser,
+			goalType = goalType,
+			targetCalories = targetCalories,
+			targetProteinGrams = targetProteinGrams,
+			targetCarbsGrams = targetCarbsGrams,
+			targetFatsGrams = targetFatsGrams
 		)
 
+//		maybe return a dto instead later
 		return userGoalRepository.save(newUserGoal)
 	}
 
