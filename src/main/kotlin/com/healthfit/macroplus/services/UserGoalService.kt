@@ -7,28 +7,38 @@ import com.healthfit.macroplus.repositories.UserRepository
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
+import java.time.LocalDate
 import java.util.*
 
 @Service
-open class UserGoalService(
+class UserGoalService(
 	private val userGoalRepository: UserGoalRepository,
 	private val userRepository: UserRepository
 ) {
 
 	@Transactional
-	open fun addUserGoalToUser(
+	fun addUserGoalToUser(
 		userId: UUID,
 		goalType: GoalType,
 		targetCalories: Int,
 		targetProteinGrams: BigDecimal,
 		targetCarbsGrams: BigDecimal,
 		targetFatsGrams: BigDecimal
-		) : UserGoal {
+	) : UserGoal {
 
 		val foundUser = userRepository.findById(userId)
 			.orElseThrow { NoSuchElementException("User not found with ID: $userId") }
 
-		val newUserGoal: UserGoal = UserGoal(
+//		remove previous goal
+		val currentActiveGoal = userGoalRepository.findByUserIdAndIsActiveTrue(userId)
+		if (currentActiveGoal != null) {
+			currentActiveGoal.isActive = false
+			currentActiveGoal.endDate = LocalDate.now()
+			userGoalRepository.save(currentActiveGoal)
+		}
+
+		// Create the new goal (isActive defaults to true in your Model)
+		val newUserGoal = UserGoal(
 			foundUser,
 			goalType,
 			targetCalories,
@@ -39,4 +49,14 @@ open class UserGoalService(
 
 		return userGoalRepository.save(newUserGoal)
 	}
+
+	@Transactional
+	fun getUserGoalByUserId(userId: UUID): UserGoal {
+		return userGoalRepository.findByUserIdAndIsActiveTrue(userId)
+			?: throw NoSuchElementException("No active goal found for user: $userId")
+	}
+
+	@Transactional
+	open fun checkUserHasActiveGoal(userId: UUID): Boolean {
+		return userGoalRepository.existsByUserIdAndIsActiveTrue(userId)
 }

@@ -6,6 +6,8 @@ import java.util.UUID
 
 interface UserGoalRepository : JpaRepository<UserGoal, UUID> {
 
-	fun findByUserId(userId: UUID): UserGoal?
+	fun findByUserIdAndIsActiveTrue(userId: UUID): UserGoal?
+
+	fun existsByUserIdAndIsActiveTrue(userId: UUID): Boolean
 
 }
