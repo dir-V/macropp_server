@@ -24,7 +24,7 @@ class UserGoalService(
 		targetProteinGrams: BigDecimal,
 		targetCarbsGrams: BigDecimal,
 		targetFatsGrams: BigDecimal
-	) : UserGoal {
+	): UserGoal {
 
 		val foundUser = userRepository.findById(userId)
 			.orElseThrow { NoSuchElementException("User not found with ID: $userId") }
@@ -37,7 +37,7 @@ class UserGoalService(
 			userGoalRepository.save(currentActiveGoal)
 		}
 
-		// Create the new goal (isActive defaults to true in your Model)
+//		isActive true by default
 		val newUserGoal = UserGoal(
 			foundUser,
 			goalType,
@@ -59,4 +59,5 @@ class UserGoalService(
 	@Transactional
 	open fun checkUserHasActiveGoal(userId: UUID): Boolean {
 		return userGoalRepository.existsByUserIdAndIsActiveTrue(userId)
+	}
 }
