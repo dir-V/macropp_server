@@ -46,4 +46,14 @@ open class FoodService(
 		return foodRepository.save(newFood)
 	}
 
+
+	@Transactional
+	open fun getFoodById(foodId: UUID): Food {
+		val foundFood = foodRepository.findById(foodId)
+			.orElseThrow { NoSuchElementException("Food not found with ID: $foodId") }
+
+//		maybe dto later
+		return foundFood
+	}
+
 }
