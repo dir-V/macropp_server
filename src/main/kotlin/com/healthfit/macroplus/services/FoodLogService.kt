@@ -83,4 +83,14 @@ open class FoodLogService(
 		return foodLogRepository.save(newFoodLog)
 	}
 
+
+	@Transactional
+	open fun getFoodLogsForUser(userId: UUID): List<FoodLog> {
+
+		if (!userRepository.existsById(userId)) {
+			throw kotlin.NoSuchElementException("User not found with ID: $userId")
+		}
+
+		return foodLogRepository.findByUserId(userId)
+	}
 }
