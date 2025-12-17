@@ -5,4 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import java.util.UUID
 
 interface UserGoalRepository : JpaRepository<UserGoal, UUID> {
+
+	fun findByUserId(userId: UUID): UserGoal?
+
 }
